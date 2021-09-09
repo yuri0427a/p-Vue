@@ -4,6 +4,7 @@
     <script src="http://unpkg.com/vue@2.5.17"></script>
 <button id="b-button" v-bind:disabled="!canBuy">仕事大変</button>
 <div id="app">
-     <p>合計: {{ totalPrice }}</p>
+    <p>{{ items[0].name }}: {{ items[0].price }} X {{ items[0].quantity }} </p>
+    <p>ファイル処理例 {{totalPriceWithTax | numberWithDelimiter }}</p>
 </div>
 <script src="app.js"></script>
