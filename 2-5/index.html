@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <title>初めてのVue.js</title>
+    <script src="http://unpkg.com/vue@2.5.17"></script>
+<button id="b-button" v-bind:disabled="!canBuy">仕事大変</button>
+<script>
+var vm = new Vue({
+    el: '#b-button',
+    data:{
+        canBuy: false
+    }
+})
+</script>
