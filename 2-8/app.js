@@ -24,7 +24,7 @@ var vm = new Vue({
       items: items
   },
   filters: {
-    numberWithDelimiter: function (value) {
+    numberWithvDelimiter: function (value) {
       if (!value) {
         return '0'
       }
