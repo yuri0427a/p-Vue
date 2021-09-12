@@ -4,19 +4,36 @@
     <script src="http://unpkg.com/vue@2.5.17"></script>
 <button id="b-button" v-bind:disabled="!canBuy">仕事大変</button>
 <div id="app">
-    <ul>
-        <li  v-for="item in items" v-bind:key="item.name">
-            {{ item.name }}の個数: <input type="number" v-model="item.quantity" min="0">
-        </li>
-    </ul>
-    <div :style="errorMessageStyle">
-    <li  v-for="item in items" v-bind:key="item.name">
-        {{ items[0].name }}: {{ items[0].price }} X {{ items[0].quantity }} </li>
-    <p> 小計:{{ totalPrice | numberWithDelimiter }}円</p>
-    <p>合計(税込):{{ totalPrice | numberWithDelimiter }}円</p>
-    <p v-show="!canBuy">
-        {{ 1000 | numberWithDelimiter }}以上からご購入いただけます
-    </p>
+    <p>{{ count }}</p>
 </div>
-</div>
-<script src="app.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: function(){
+            return {
+                count: 0,
+                timerId: null
+            }
+        },
+        created: function(){
+        console.log('created')
+        var that = this
+
+        // データを参照できる
+        console.log(this.count)
+        console.log(this.$el)
+        this.timerId =setInterval(function(){
+            that.count += 1
+        },1000)
+    },
+    mounted: function (){
+        console.log('mounted')
+        console.log(this.$el)
+    },
+    beforeDestroy: function(){
+        console.log('beforeDestroy')
+        clearInterval(this.timerId)
+    }
+    })
+    window.vm = vm
+</script>
