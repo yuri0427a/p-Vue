@@ -4,6 +4,12 @@
     <script src="http://unpkg.com/vue@2.5.17"></script>
 <button id="b-button" v-bind:disabled="!canBuy">仕事大変</button>
 <div id="app">
+    <ul>
+        <li v-for="item in items" v-bind:key="item.name">
+            {{ item.name }}の個数: <input type="number" v-model="item.quantity" min="0">
+        </li>
+    </ul>
+    <hr>
     <p>{{ items[0].name }}: {{ items[0].price }} X {{ items[0].quantity }} </p>
     <p>
         ファイル処理例 {{ 1000 | numberWithDelimiter }}からご購入いただけます
