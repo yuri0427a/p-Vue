@@ -11,6 +11,17 @@
     <item-desc v-bind:item-name="myItem"></item-desc>
 </div>
 <script>
-    Vue.component
+    Vue.component ('item-desc', {
+        props:{
+            itemName:{
+                type: String
+            }
+        },
+        templete:'<p>{{ itemName }}は便利です</p>'
+    })
+    new Vue({
+        el: '#app',
+        data: {myItem: 'pen'}
+    })
 </script>
 </html>
