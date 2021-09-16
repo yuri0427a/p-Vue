@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://unpkg.com/vue@2.5.17"></script>
+    <title>Document</title>
+</head>
+<div id="fruits-counter">
+    <ol>
+        <fruits-item-name v-for= "fruit in fruitsItems" :key="fruit.name" :fruits-item="fruit"></fruits-item-name>
+    </ol>
+</div>
+<script>
+    var counterButton =Vue.extend({
+        template:'<span>{{ counter }}個<button v-on:click="addToCart">追加</button><span> ',
+            data: function  (){
+                return{
+                    counter: 0
+                }
+            },
+            methods:{
+                addToCart: function(){
+                    this.counter +=1
+                    this.$emit('increment')
+                }
+            },
+    })
+    Vue.component ('fruits-item-name', {
+        props:{
+            fruitsItem:{
+                type: Object,
+                required: true
+            }
+        },
+        templete:'<li>{{ fruitsItem.name }}</li>'
+    })
+    new Vue({
+        el: '#fruits-counter',
+        components:{
+        fruitsItems:[
+            {name: '梨'},
+            {name: 'いちご'}
+        ]
+        },
+        methods:{
+            incrementCartStatus: function (){
+                this.total+=1
+            }
+        }
+        
+    })
+
+</script>
+</html>
