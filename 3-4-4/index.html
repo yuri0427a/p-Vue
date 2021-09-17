@@ -7,7 +7,46 @@
     <script src="http://unpkg.com/vue@2.5.17"></script>
     <title>Document</title>
 </head>
+
+<div id="login-example">
+    <user-login></user-login>
+</div>
+
+
+<script　type="text/x-templete" id="login-templete">
+   <div id="login-template">
+      <div>
+        <input type="text" placeholder="ログインID"　v-model="userid">
+      </div>
+      <div>
+        <input type="password" placeholder="パスワード"　v-model="password">
+      </div>
+      <button click="login">ログイン</button>
+   </div>
+</script>
 <script>
-   
+    Vue.component('user-login',{
+        templete:'#login-template',
+        data: function(){
+            return{
+                userid: '',
+                password: ''
+            }            
+        },
+        methods:{
+            login: function(){
+                auth.login(this.userid, this.password);
+            }
+        }
+    })
+    var auth = {
+        login: function(id, pass){
+                window.alert("userid:" + id + "\n" + "password:" + pass);
+        }
+    }
+
+    new Vue({
+        el: "#login-example"
+    });
 </script>
 </html>
