@@ -10,16 +10,23 @@
 </head>
 <body>
 <div id="app">
-    <router-link to="{ name: 'user', params:{ userId: 123 }}">ユーザー詳細</router-link>
+    <router-link to="/top">トップページ</router-link>
+    <router-link to="/users">ユーザー一覧</router-link>
+    <router-view></router-view>
 </div>
 <script>
 var router = new VueRouter({
     routes:[
-        {
-        path: '/:user/userId',
-        name: 'user',
-        component: {
-            templete: '<div>ユーザーIDは{{ $routes.params.userId }}</div>'
+    {
+        path: '/top',
+        component:{
+            template: '<div>トップページです。</div>'            
+        }
+    },
+    {
+        path: '/users',
+        component:{
+            template: '<div>ユーザー一覧ページ</div>'            
         }
     }
     ]
