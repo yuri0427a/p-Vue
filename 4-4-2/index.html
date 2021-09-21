@@ -17,7 +17,16 @@
         <router-view></router-view>
     </div>
     <script type="text/x-template" id="user-list">
-        <div>ユーザーの一覧ページ</div>
+    <div>
+        <div class="loading" v-if="loading">読み込み中...</div>
+      
+        <div v-if="error" class="error">
+             {{ error }}
+        </div>
+        <div v-for="user in users" :key="user.id">
+            <h2>{{ user.name }}</h2>
+        </div>
+    </div>
     </script>
     <script>
         var UserList = {
@@ -39,9 +48,62 @@
             ]
         })
 
+
+
+        // API
+        var getUsers = function(callback){
+            setTimeout(function(){
+                callback(null,[
+                    {
+                        id: 1,
+                        name: 'aaa'
+                    },
+                    {
+                        id: 2,
+                        name: 'bbb'
+                    }
+                ])
+            }, 1000)
+        }
+
+        // User List改修
+        var UserList = {
+            template: '#user-list',
+            data: function(){
+                return{
+                    loading: false,
+                    users: function(){ return [] },
+                    error: null
+                }
+            },
+
+            created: function(){
+                this.fetchData()
+            },
+
+            watch:{
+                '$route': 'fetchData'
+            },
+
+            methods:{
+                fetchData: function(){
+                    this.loading = true
+                    getUsers((function(err, users){  
+                        this.loading = false                      
+                        if (err){
+                            this.error = err.toStiring()
+                        } else{
+                            this.users = users
+                        }
+                    }).bind(this))
+                }
+            }
+        }
+
         var app = new Vue({
-            router: router
+            router: router,
         }).$mount('#app')
+
     </script>
 </body>
 </html>
