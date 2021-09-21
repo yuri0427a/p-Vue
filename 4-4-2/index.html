@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@2.5.17"></script>
     <script src="https://unpkg.com/vue-router@3.0.1"></script>
-    <title>Document</title>
+    <title>あ</title>
 </head>
 <body>
-    <script type="text/x-template" id="user-list">
-        <div>
+    <div id="app">
+        <nav>
             <router-link to="/top">トップページ</router-link>
             <router-link to="/users">ユーザー一覧ページ</router-link>
-        </div>
+        </nav>
+        <router-view></router-view>
+    </div>
+    <script type="text/x-template" id="user-list">
+        <div>ユーザーの一覧ページ</div>
     </script>
     <script>
         var UserList = {
@@ -30,10 +34,8 @@
                 },
                 {
                   path: '/users',
-                  component: {
-                    template: UserList
-                  }
-                },
+                  component:  UserList
+                }
             ]
         })
 
