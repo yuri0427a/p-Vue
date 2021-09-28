@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@2.5.17"></script>
+    <script src="https://unpkg.com/vue-router@3.0.1"></script>
+    <title>Vue.js入門4-5</title>
+</head>
+<body>
+<script>
+    var User = {
+        template:
+             '<div class="user">' +
+             '<h2>ユーザーは{{ $route.params.userId }}です。</h2>' +
+             '<router-link :to="\'/user/\' + $route.params.userId + \'/profile/\'">ユーザープロフィールページを見る<router-link>' +
+             '<router-link :to="\'/user/\' + $route.params.userId + \'/posts/\'">ユーザー投稿ページを見る<router-link>' +
+             ' <router-view></router-view>'+
+             '</div>'
+    }
+
+    // ユーザー詳細
+    var UserProfile = {
+        template:
+         '<div class="user-profile">' +
+            '<h3>こちらはユーザー{{ $route.params.userId }} の投稿ページです。</h3>' +
+            '</div>'
+    }
+
+    var UserPosts = {
+        template:
+         '<div class="user-posts">' +
+             '<h3>>こちらはユーザー {{ $route.params.userId }}の投稿ページです</h3>' +
+             '</div>'
+    }
+
+    var router = new VueRouter({
+        routes:[
+            {
+                path: '/user/:userId',
+                name: 'user',
+                component: User,
+                children:[
+                    {
+                    // user/:userId/profileがマッチしたときに
+                    // UserProfileコンポネートUserコンポーネント
+                    path: 'profile',
+                    component: UserProfile
+                },
+                {
+                    // /user/:userId/posts
+                    // UserPostsコンポネントはUserコンポネント<router-view>
+                        path: 'posts',
+                        component: UserPosts
+                }
+                ]
+            }
+        ]
+    })
+</script>  
+</body>
+</html>
