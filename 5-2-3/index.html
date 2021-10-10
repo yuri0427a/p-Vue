@@ -5,16 +5,7 @@
     <script src="https://unpkg.com/vue@2.5.17"></script>
     <title>Vue.js入門5-1</title>
     <div id="app">
-        <my-page>
-            <h1 slot="header">This is my page</h1>
-            <p>
-                pのやらpのやらpのやらpのやらpのやらpのやら
-                pのやらpのやらpのやらpのやらpのやらpのやら
-                pのやらpのやらpのやらpのやらpのやらpのやら
-            </p>
-            <p slot="footer">This is footer</p>
-        </my-page>
-        <my-button></my-button>
+        <img v-fallback-image src="logo.png"　:alt＝"altText">
     </div>
     <script src="app.js"></script>
 </html>

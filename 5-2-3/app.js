@@ -1,25 +1,19 @@
-var MyButton = {
-    data: function () {
-        return {
-            textLabel: 'child'
-        }
+Vue.directive('fallback-image', {
+    bind: function (el) {
+        el.addEventListener('error', function () {
+            el.src = 'https://dummyimage.com/400x400/000/ffffff.png&text=no+image'
+        })
     },
-
-    template: `
-     <button>
-        <slot>OK</slot>
-     </button>
-     `
-}
+    update: function (el, binding) {
+        console.log('update', binding)
+    }
+})
 
 new Vue({
     el: '#app',
     data: function () {
-        return function(){
-            data: textLabel: 'parent'
+        return {
+            altText: 'logo'
         }
-    },
-    components: {
-        MyButton: MyButton
     }
 })
