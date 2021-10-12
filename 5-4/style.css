@@ -1,0 +1,25 @@
+.v-enter-active,
+.v-leave-active{
+    transition: opacity 500ms ease-out;
+}
+/* フェードイン */
+
+.v-enter{
+    /* フェード初期状態 */
+    opacity: 0;
+}
+
+.v-enter-to{
+    opacity: 1;
+}
+
+/* フェードアウト */
+.v-leave{
+    /* フェードアウト初期 */
+    opacity: 1;
+}
+
+.v-leave-to{
+    /* フェードアウト終了 */
+    opacity: 0;
+}

@@ -9,7 +9,7 @@ Vue.directive('fallback-image', {
     }
 })
 
-new Vue({ 
+new Vue({
     el: '#app',
     data: function () {
         return  {
